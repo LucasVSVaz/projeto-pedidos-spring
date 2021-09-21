@@ -9,14 +9,19 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nomeProduto;
     private BigDecimal valorProduto;
     private LocalDate dataDeEntrega;
     private String urlProduto;
     private String urlImagem;
     private String descricao;
+
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
     public Pedido() {
     }
