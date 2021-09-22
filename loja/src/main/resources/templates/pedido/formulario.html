@@ -20,7 +20,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-sm-10">
-                    <form action="/pedido/novo" method="post">
+                    <form th:action="@{/pedido/novo}" method="post">
                         <div class="mb-3">
                             <label class="form-label">Produto:</label>
                             <input type="text" class="form-control" name="nomeProduto" placeholder="Nome do produto">
