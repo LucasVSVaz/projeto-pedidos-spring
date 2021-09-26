@@ -19,7 +19,6 @@ import java.util.List;
 public class HomeController {
     @Autowired
     private PedidoRepository repository;
-
     @GetMapping
     public ModelAndView home(Principal principal) {
         List<Pedido> pedidos = repository.findAllByUser(principal.getName());
@@ -40,5 +39,6 @@ public class HomeController {
     public String onError() {
         return "redirect:/home";
     }
+
 
 }
