@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -31,7 +29,7 @@ public class PedidoController {
     }
 
     @PostMapping("novo")
-    public String novo(@Valid RequisicaoNovoPedido requisicaoNovoPedido, BindingResult result) {
+    public String create(@Valid RequisicaoNovoPedido requisicaoNovoPedido, BindingResult result) {
         if (result.hasErrors()) {
             return "pedido/formulario";
         }
@@ -39,9 +37,14 @@ public class PedidoController {
         User user = userRepository.findByUsername(username);
         Pedido pedido = requisicaoNovoPedido.toPedido();
         pedido.setUser(user);
-        repository.save(pedido);
         pedido.setStatus(StatusPedido.AGUARDANDO);
+        repository.save(pedido);
         return "redirect:/home";
+    }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable Pedido pedido){
+        repository.delete(pedido);
     }
 
 }
