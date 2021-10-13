@@ -1,6 +1,6 @@
 package br.com.alura.mudi.controller;
 
-import br.com.alura.mudi.dto.RequisicaoNovoPedido;
+import br.com.alura.mudi.dto.PedidoDto;
 import br.com.alura.mudi.model.Pedido;
 import br.com.alura.mudi.model.StatusPedido;
 import br.com.alura.mudi.model.User;
@@ -29,22 +29,16 @@ public class PedidoController {
     }
 
     @PostMapping("novo")
-    public String create(@Valid RequisicaoNovoPedido requisicaoNovoPedido, BindingResult result) {
+    public String create(@Valid PedidoDto pedidoDto, BindingResult result) {
         if (result.hasErrors()) {
             return "pedido/formulario";
         }
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByUsername(username);
-        Pedido pedido = requisicaoNovoPedido.toPedido();
+        Pedido pedido = pedidoDto.toPedido();
         pedido.setUser(user);
         pedido.setStatus(StatusPedido.AGUARDANDO);
         repository.save(pedido);
         return "redirect:/home";
     }
-
-    @DeleteMapping("{id}")
-    public void delete(@PathVariable Pedido pedido){
-        repository.delete(pedido);
-    }
-
 }

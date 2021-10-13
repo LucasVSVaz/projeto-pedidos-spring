@@ -16,18 +16,26 @@
                     <form th:action="@{/pedido/novo}" method="post">
                         <div class="mb-3">
                             <label class="form-label">Produto:</label>
-                            <input type="text" class="form-control" name="nomeProduto" placeholder="Nome do produto">
+                            <input type="text" class="form-control" name="nomeProduto" placeholder="Nome do produto"
+                            required>
                             <small>Informe qual o nome do produto</small>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">URL do Produto:</label>
-                            <input type="text" class="form-control" name="urlProduto" placeholder="URL do Produto">
+                            <input type="text" class="form-control" name="urlProduto" placeholder="URL do Produto"
+                                   required>
                             <small>Procure em um site o produto que deseja e cole a URL aqui</small>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Imagem:</label>
-                            <input type="text" class="form-control" name="urlImagem" placeholder="URL da imagem">
+                            <input type="text" class="form-control" name="urlImagem" placeholder="URL da imagem"
+                                   required>
                             <small>Procure uma boa imagem do produto e cole URL aqui</small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Valor:</label>
+                            <input type="number" step="0.01" min="0" name="valorProduto" class="form-control"
+                                   placeholder="0.00" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Descrição</label>
