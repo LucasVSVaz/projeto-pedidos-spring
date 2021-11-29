@@ -16,5 +16,6 @@ Foram utilizados:
 
 - Spring Boot - Data JPA, WEB, Validation, DevTools e Security;  
 - Thymeleaf;  
-- Bootstrap
+- Bootstrap;
+- Google fonts;
 - MariaDB.
